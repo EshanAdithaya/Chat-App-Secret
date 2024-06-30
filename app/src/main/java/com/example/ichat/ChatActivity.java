@@ -43,7 +43,7 @@ public class ChatActivity extends AppCompatActivity {
         chatAdapter = new ChatAdapter(chatList);
         chatsRecyclerView.setAdapter(chatAdapter);
 
-      
+
 
         findViewById(R.id.find_user_button).setOnClickListener(v -> showFindUserDialog());
 
