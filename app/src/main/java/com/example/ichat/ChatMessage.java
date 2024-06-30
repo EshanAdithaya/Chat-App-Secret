@@ -1,16 +1,12 @@
+// ChatMessage.java
 package com.example.ichat;
-
-import com.google.firebase.firestore.ServerTimestamp;
-
-import java.util.Date;
 
 public class ChatMessage {
     private String userId;
     private String username;
     private String userPhoto;
     private String message;
-    @ServerTimestamp
-    private Date timestamp;
+    private long timestamp;
 
     public ChatMessage() {
         // Default constructor required for calls to DataSnapshot.getValue(ChatMessage.class)
@@ -21,6 +17,7 @@ public class ChatMessage {
         this.username = username;
         this.userPhoto = userPhoto;
         this.message = message;
+        this.timestamp = System.currentTimeMillis();
     }
 
     public String getUserId() {
@@ -55,11 +52,11 @@ public class ChatMessage {
         this.message = message;
     }
 
-    public Date getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 }

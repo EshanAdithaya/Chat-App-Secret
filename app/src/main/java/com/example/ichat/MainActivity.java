@@ -1,5 +1,7 @@
+// MainActivity.java
 package com.example.ichat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -41,6 +43,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser == null) {
+            // User is not logged in, redirect to LoginActivity
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+        } else {
+            // User is logged in, load ChatActivity
+            startActivity(new Intent(MainActivity.this, ChatActivity.class));
+            finish();
+        }
         db = FirebaseFirestore.getInstance();
 
         recyclerView = findViewById(R.id.recycler_view);

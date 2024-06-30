@@ -16,8 +16,9 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_login"
-            android:exported="false" />
+            android:name=".ChatActivity"
+            android:label="Chat Activity"
+        />
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -1,8 +1,10 @@
+// ChatAdapter.java
 package com.example.ichat;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,45 +14,44 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
 
-    private List<ChatMessage> messageList;
+    private List<ChatMessage> chatMessageList;
 
-    public ChatAdapter(List<ChatMessage> messageList) {
-        this.messageList = messageList;
+    public ChatAdapter(List<ChatMessage> chatMessageList) {
+        this.chatMessageList = chatMessageList;
     }
 
     @NonNull
     @Override
     public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat, parent, false);
         return new ChatViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
-        ChatMessage message = messageList.get(position);
-        holder.tvUsername.setText(message.getUsername());
-        holder.tvMessage.setText(message.getMessage());
-        Glide.with(holder.imgUser.getContext()).load(message.getUserPhoto()).into(holder.imgUser);
+        ChatMessage chatMessage = chatMessageList.get(position);
+        holder.userName.setText(chatMessage.getUsername());
+        holder.messageText.setText(chatMessage.getMessage());
+        Glide.with(holder.userImage.getContext()).load(chatMessage.getUserPhoto()).into(holder.userImage);
     }
 
     @Override
     public int getItemCount() {
-        return messageList.size();
+        return chatMessageList.size();
     }
 
     public static class ChatViewHolder extends RecyclerView.ViewHolder {
-        TextView tvUsername, tvMessage;
-        CircleImageView imgUser;
+
+        TextView userName, messageText;
+        ImageView userImage;
 
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvUsername = itemView.findViewById(R.id.tv_username);
-            tvMessage = itemView.findViewById(R.id.tv_message);
-            imgUser = itemView.findViewById(R.id.img_user);
+            userName = itemView.findViewById(R.id.user_name);
+            messageText = itemView.findViewById(R.id.message_text);
+            userImage = itemView.findViewById(R.id.user_image);
         }
     }
 }
